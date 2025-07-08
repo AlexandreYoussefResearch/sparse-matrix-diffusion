@@ -1,52 +1,49 @@
 # 2D Diffusion Equation Solver
 
-This project implements a numerical solver for the **two-dimensional diffusion (heat) equation** using a **finite difference method** (FDM) and explicit time-stepping.
+This project implements a numerical solver for the **two-dimensional diffusion (heat) equation** using a **finite difference method (FDM)** and explicit time-stepping.
 
 ## Mathematical Model
 
 We solve the unsteady diffusion equation:
 
-\[
-\frac{\partial u}{\partial t} = \alpha \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \right), \quad (x, y) \in \Omega \subset \mathbb{R}^2,\ t > 0
-\]
+    du/dt = alpha * (d²u/dx² + d²u/dy²)
 
-with:
-- \( u(x, y, t) \): temperature or scalar concentration field
-- \( \alpha \): diffusion coefficient
-- Appropriate **Dirichlet** or **Neumann** boundary conditions
-- Initial condition: \( u(x, y, 0) = u_0(x, y) \)
+over a 2D domain Ω with:
+- u(x, y, t): temperature or scalar concentration field
+- alpha: diffusion coefficient
+- Dirichlet or Neumann boundary conditions
+- Initial condition: u(x, y, 0) = u₀(x, y)
 
 ## Numerical Method
 
 - **Spatial discretization**:
   - Second-order centered finite differences for the Laplacian
-  - Uniform Cartesian mesh
+  - Uniform Cartesian grid
+
 - **Time discretization**:
-  - Explicit Forward Euler method
-  - Time step limited by CFL condition for stability
+  - Forward Euler method
+  - Time step constrained by a CFL condition
 
-The update scheme at each grid point \((i, j)\) is:
+Update scheme at each grid point (i, j):
 
-\[
-u_{i,j}^{n+1} = u_{i,j}^n + \Delta t \cdot \alpha \left(
-\frac{u_{i+1,j}^n - 2u_{i,j}^n + u_{i-1,j}^n}{\Delta x^2} +
-\frac{u_{i,j+1}^n - 2u_{i,j}^n + u_{i,j-1}^n}{\Delta y^2}
-\right)
-\]
+    u_new[i,j] = u[i,j] + dt * alpha * (
+                   (u[i+1,j] - 2*u[i,j] + u[i-1,j]) / dx² +
+                   (u[i,j+1] - 2*u[i,j] + u[i,j-1]) / dy²
+                )
 
 ## Features
 
-- Handles both **Dirichlet** and **Neumann** boundary conditions
+- Supports Dirichlet and Neumann boundary conditions
 - Written in modular Python
-- Visualization of the diffusion process (animated and static)
-- Sparse matrix construction of the Laplacian operator
-- Optional use of **LU decomposition** via `scipy.sparse.linalg` for validation or implicit extensions
+- Animated and static visualization of the solution
+- Sparse matrix Laplacian operator
+- Optionally uses LU decomposition (via `scipy.sparse.linalg`) for validation
 
-## Files
+## File Structure
 
-- `main.py`: solver and visualization
-- `utils.py`: setup routines and boundary condition handling
-- `laplacian.py`: constructs the 2D Laplacian operator using sparse matrices
+- `main.py`: main solver and animation
+- `utils.py`: boundary conditions and grid setup
+- `laplacian.py`: builds the 2D Laplacian matrix
 
 ## How to Run
 
