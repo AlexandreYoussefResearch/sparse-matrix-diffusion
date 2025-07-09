@@ -31,14 +31,6 @@ Update scheme at each grid point (i, j):
                    (u[i,j+1] - 2*u[i,j] + u[i,j-1]) / dy²
                 )
 
-## Features
-
-- Supports Dirichlet and Neumann boundary conditions
-- Written in modular Python
-- Animated and static visualization of the solution
-- Sparse matrix Laplacian operator
-- Optionally uses LU decomposition (via `scipy.sparse.linalg`) for validation
-
 ## Simulation Results
 
 <p align="center">
