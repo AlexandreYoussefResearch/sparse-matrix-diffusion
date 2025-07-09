@@ -39,3 +39,10 @@ Update scheme at each grid point (i, j):
 - Sparse matrix Laplacian operator
 - Optionally uses LU decomposition (via `scipy.sparse.linalg`) for validation
 
+## Simulation Results
+
+<p align="center">
+  <img src="Plots.png" alt="Temperature Evolution" width="600"/>
+</p>
+
+The figure shows the evolution of the temperature field at different time steps. The initial heat profile progressively smooths out due to diffusion. It illustrates the physical spreading of heat over time.
