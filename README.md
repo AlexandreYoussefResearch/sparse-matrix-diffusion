@@ -39,13 +39,3 @@ Update scheme at each grid point (i, j):
 - Sparse matrix Laplacian operator
 - Optionally uses LU decomposition (via `scipy.sparse.linalg`) for validation
 
-## File Structure
-
-- `main.py`: main solver and animation
-- `utils.py`: boundary conditions and grid setup
-- `laplacian.py`: builds the 2D Laplacian matrix
-
-## How to Run
-
-```bash
-python main.py
